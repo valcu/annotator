@@ -5,44 +5,28 @@ HTMLWidgets.widget({
   type: "output",
 
   factory: function (el, width, height) {
-
     
 
-
-    // for now
-    var html  = '<img src="file:///home/mihai/Desktop/Bird_pic.webp" id="activeImg" style="display:none">'
-    html += '<canvas id="canvasId" style="border:1px solid #000000"> </canvas>'
-    html += '<p id="out"></p>'
-    document.getElementById("parentElement").innerHTML = html;
 
 
     return {
 
       renderValue: function (x) {
 
+        let image = document.getElementById(x.activeImg)
+        let fabricImg = new fabric.Image(image)
 
-
-        // Initiate and set the canvas
-        let canvas = new fabric.Canvas(document.getElementById('canvasId'))
-
-        //fabric.Object.prototype.originY = 'bottom'
-
-        canvas.isDrawingMode = true
+        let canvas = new fabric.Canvas(el.canvasId, {
+          hoverCursor: 'pointer',
+          selection: true,
+          isDrawingMode: true,
+          backgroundColor: null
+        });
 
         canvas.freeDrawingBrush.width = 5
         canvas.freeDrawingBrush.decimate = 10
         canvas.freeDrawingBrush.color = 'rgba(255,93,0,1)'
-
-
-        // Add image to canvas (set size to fit the photo )
-
-        let image = document.getElementById('activeImg')
-
-        let activeImg = new fabric.Image(image)
-
-
-        canvas.add(activeImg)
-
+        canvas.add(fabricImg)
         canvas.setDimensions({
           width: image.naturalWidth,
           height: image.naturalHeight
@@ -52,9 +36,9 @@ HTMLWidgets.widget({
 
         // convert path to polygon
         // https://stackoverflow.com/questions/67405972/converting-a-the-outlines-of-a-free-drawn-path-to-a-polygon    
-        canvas.on('path:created', function (el) {
-          var path = el.path.path
-          var points = []
+        canvas.on('path:created', function (elm) {
+          let path = elm.path.path
+          let points = []
           for (var i = 0; i < path.length; i++) {
             point = {
               x: (path[i][1]),
@@ -80,9 +64,9 @@ HTMLWidgets.widget({
           // output a converted polygon: from <canvas> coordinates to cartesian
           polygon = Array.from(points)
 
-          console.table(polygon)
-
           cartesianPolygon = polygon.map(item => ({ ...item, y: image.naturalHeight - item.y }))
+
+          console.table(cartesianPolygon)
 
           var cartesianPolygon = JSON.stringify(cartesianPolygon)
 
@@ -91,7 +75,6 @@ HTMLWidgets.widget({
 
 
         })
-
 
 
 

@@ -2,19 +2,17 @@
 #' @import htmlwidgets
 #' @export
 
-fabric <- function(data = list(), elementId = NULL) {
-  items <- data
+fabric <- function(data = NULL) {
 
   # forward options using x
   x <- list(
-    items = items
+    data = data
   )
 
   # create widget
   htmlwidgets::createWidget(
     name = "fabric",
     x,
-    package = "annotator",
-    elementId = elementId
+    package = "annotator"
   )
 }
