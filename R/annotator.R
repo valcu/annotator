@@ -2,7 +2,7 @@
 #' @import htmlwidgets
 #' @export
 
-fabric <- function(data = NULL) {
+annotate <- function(data = NULL) {
 
   # forward options using x
   x <- list(
@@ -15,4 +15,5 @@ fabric <- function(data = NULL) {
     x,
     package = "annotator"
   )
+
 }

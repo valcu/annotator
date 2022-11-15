@@ -1,6 +1,5 @@
 dependencies:
   - name: fabric
-    version: 1.0.3
-    src: htmlwidgets/lib/fabric-5.2.4
-    script: 
-      - fabric.min.js
+    version: 5.2.4
+    src: htmlwidgets/lib
+    script: fabric.min.js
