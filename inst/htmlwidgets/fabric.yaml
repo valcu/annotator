@@ -1,5 +1,16 @@
 dependencies:
+
   - name: fabric
     version: 5.2.4
-    src: htmlwidgets/lib
+    src: htmlwidgets/lib/fabric-v5.2.4
     script: fabric.min.js
+
+  - name: jquery
+    version: 3.6.1
+    src: htmlwidgets/lib/jquery-v3.6.1
+    script: jquery.min.js
+
+  - name: annotator
+    version: 0.0.1
+    src: htmlwidgets/lib
+    script: annotator.js

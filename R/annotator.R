@@ -2,11 +2,13 @@
 #' @import htmlwidgets
 #' @export
 
-annotate <- function(data = NULL) {
+annotate <- function(img) {
+
+  imgstring = knitr::image_uri(img)
 
   # forward options using x
   x <- list(
-    data = data
+    img = imgstring
   )
 
   # create widget
