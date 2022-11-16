@@ -1,16 +1,19 @@
 
-function annotator(el, img) {
+function annotator(el, im) {
 
-  let imgEl = '<img src="' + img + '" id="activeImg" style="display:none">'
-  console.log(imgEl)
+
+
+  let imgEl = '<img src="' + im + '" id="activeImg" style="display:none">'
 
   $(imgEl).appendTo(el);
-  $(' <canvas id="canvasId" style="border:1px solid #000000"> </canvas>').appendTo(el);
+  $(' <canvas id="annotator_canvas"> </canvas>').appendTo(el);
   $('<p id="out"></p>').appendTo(el);
+
+  console.log(el)
 
 
   // Initiate and set the canvas
-  let canvas = new fabric.Canvas(document.getElementById('canvasId'))
+  let canvas = new fabric.Canvas(document.getElementById('annotator_canvas'))
 
   //fabric.Object.prototype.originY = 'bottom'
 
@@ -25,17 +28,25 @@ function annotator(el, img) {
 
   let image = document.getElementById('activeImg')
 
-  let activeImg = new fabric.Image(image)
+
+  let activeImg = new fabric.Image(image, {
+    hasControls: true
+  })
 
 
   canvas.add(activeImg)
 
-  canvas.setDimensions({
-    width: image.naturalWidth,
-    height: image.naturalHeight
-  })
+   
+  image.onload = function () {
 
+    canvas.setDimensions({
+      width: image.naturalWidth,
+      height: image.naturalHeight
+    })
+  
+  }
 
+  image.onload()
 
 
   // convert path to polygon
@@ -80,6 +91,8 @@ function annotator(el, img) {
 
   })
 
+
+  // canvas.clear()
 
 
 }

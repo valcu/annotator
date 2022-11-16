@@ -1,21 +1,26 @@
 
 #' @import htmlwidgets
 #' @export
+#' @examples 
+#' if(interactive()) {
+#' im = system.file("sample_images", "PUFFIN","010.jpg" , package = "annotator")
+#' annotate(im)
+#' }
 
-annotate <- function(img) {
+annotate <- function(im) {
 
-  imgstring = knitr::image_uri(img)
-
-  # forward options using x
   x <- list(
-    img = imgstring
+    im = knitr::image_uri(im)
   )
 
-  # create widget
   htmlwidgets::createWidget(
     name = "fabric",
     x,
-    package = "annotator"
+    package = "annotator", 
+    elementId = "annotator"
+
   )
+
+
 
 }

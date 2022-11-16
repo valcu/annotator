@@ -6,7 +6,6 @@ HTMLWidgets.widget({
   initialize: function (el, width, height) {
     
     
-    
   },
   
   resize: function (el, width, height, instance) {
@@ -16,7 +15,7 @@ HTMLWidgets.widget({
   renderValue: function (el, x, instance) {
     
   
-    annotator(el, x.img) 
+    annotator(el, x.im) 
 
 
 
