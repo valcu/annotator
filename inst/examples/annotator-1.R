@@ -8,7 +8,19 @@ im <- system.file("sample_images", "PUFFIN", "010.jpg", package = "annotator")
 
 ui <- shinyUI(fluidPage(
   annotatorOutput("annotation"),
-  uiOutput(outputId = "annotator_output")
+  
+  verbatimTextOutput("results"), 
+
+  tags$div(id = "annotator_output"),
+  tags$script('
+    var x = document.getElementById("annotator_output")
+    Shiny.onInputChange("annotator_output", x)
+
+  ')
+
+
+
+
 ))
 
 server <- function(input, output) {
@@ -18,10 +30,10 @@ server <- function(input, output) {
     annotate(im)
   )
 
-  output$annotator_output <- renderUI(
+    output$results <- renderPrint({
+      input$annotator_output
+    })
 
-
-  )
 
 
 
