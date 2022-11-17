@@ -9,8 +9,8 @@
 #' @author Mihai Valcu \email{mvalcu@gwdg.de}
 #'
 #' @import     methods utils stringr glue
-#' @import     shiny
-#' @importFrom imager  load.image
+#' @import     shiny htmlwidgets
+#' @importFrom imager  load.image width height
 #' @importFrom knitr image_uri
 #'
 NULL

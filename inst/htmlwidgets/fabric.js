@@ -15,7 +15,7 @@ HTMLWidgets.widget({
   renderValue: function (el, x, instance) {
     
   
-    annotator(el, x.im, x.W, x.H) 
+    annotator(el, x.im, x.W, x.H, x.resultId) 
 
 
 

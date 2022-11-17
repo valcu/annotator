@@ -1,5 +1,5 @@
 
-function annotator(el, im, W, H) {
+function annotator(el, im, W, H, resultId) {
 
 
   $(' <canvas id="annotator_canvas"> </canvas>').appendTo(el);
@@ -53,11 +53,16 @@ function annotator(el, im, W, H) {
 
     var cartesianPolygon = JSON.stringify(cartesianPolygon)
 
-    document.getElementById("annotator_output").innerHTML = cartesianPolygon
+    if (HTMLWidgets.shinyMode) {
+
+      Shiny.setInputValue(resultId, cartesianPolygon)
+    } else {
+      var e = '<div id="' + resultId + '"> </div>'
+      alert(e)
+      $(e).appendTo(el);
+      document.getElementById(resultId).innerHTML = "jsonlite::fromJSON('" + cartesianPolygon + "')"
+      }
     
-    // window.localStorage.setItem('annot', cartesianPolygon);
-    // var annotdat = localStorage.getItem('annot');
-    // console.table(annotdat)
 
   })
 

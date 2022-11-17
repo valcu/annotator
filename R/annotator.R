@@ -1,5 +1,7 @@
-
-#' @import htmlwidgets
+#' Annotate an image
+#' Annotate an image 
+#' @param im input image
+#' @param resultId the id  of the div in the UI where the annotation (the drawn polygon) is stored. Only relevant when the widget is used in shiny.
 #' @export
 #' @examples 
 #' if(interactive()) {
@@ -7,7 +9,7 @@
 #' annotate(im)
 #' }
 
-annotate <- function(im) {
+annotate <- function(im, resultId = "annot_id") {
 
   ii = load.image(im)
   W = width(ii)
@@ -16,10 +18,11 @@ annotate <- function(im) {
   x <- list(
     im = knitr::image_uri(im), 
     W = W,
-    H = H
+    H = H, 
+    resultId = resultId
   )
 
-  htmlwidgets::createWidget(
+  createWidget(
     name = "fabric",
     x,
     package   = "annotator", 
