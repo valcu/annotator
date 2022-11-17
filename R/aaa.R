@@ -11,7 +11,6 @@
 #' @import     methods utils stringr glue
 #' @import     shiny
 #' @importFrom imager  load.image
-#' @importFrom terra rast
-#' @importFrom sf st_as_sfc
+#' @importFrom knitr image_uri
 #'
 NULL

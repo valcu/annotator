@@ -18,8 +18,6 @@ Imports:
     glue,
     imager,
     shiny,
-    terra,
-    sf
+    knitr
 Suggests:
-    knitr,
     testthat
