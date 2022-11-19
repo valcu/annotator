@@ -11,8 +11,10 @@ HTMLWidgets.widget({
     $('#upper-canvas ').remove();
     $('#lower-canvas').remove();
     $('#annotator_canvas').remove();
+    $('#clear_annotations').remove();
     
-    $(' <canvas id="annotator_canvas"> </canvas>').appendTo(el);
+    $('<canvas id="annotator_canvas"> </canvas>').appendTo(el);
+    $('<button id="clear_annotations" class="button">Clear annotations</button>').appendTo(el);
 
 
   

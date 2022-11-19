@@ -18,6 +18,7 @@ ui <-  fluidPage(
   tags$h4("Draw some polygons on the image"),
 
   selectInput("pid", "photo", choices = ims),
+  actionButton("next_photo", "Next photo"),
 
 fluidRow(
   column(6,
@@ -35,7 +36,17 @@ fluidRow(
 )
 )
 
-server <- function(input, output) {
+server <- function(input, output, session) {
+
+  observeEvent(input$next_photo, {
+    which_pid = which(ims == input$pid)
+
+    print(ims[which_pid])
+    print(input$pid)
+
+    updateSelectInput(session, "pid", selected = ims[which_pid + 1])
+
+  })
 
 
   output$annotation <- renderAnnotator({
@@ -73,8 +84,8 @@ server <- function(input, output) {
     Image size = {prod(dim(r)[1:2])} pixels <br>
     Selected area = {st_area(o) |> round(2)} pixels <br>
     <p style="color:{avcol};"> Median color = {avcol} <br>
-    <svg width="200" height="30">
-      <rect width="200" height="30" style="fill:{avcol};" />
+    <svg width="500" height="50">
+      <rect width="500" height="50" style="fill:{avcol};" />
     </svg>
     </h1>
 

@@ -67,9 +67,14 @@ function annotator(el, im, W, H, resultId) {
       $(e).appendTo(el);
       document.getElementById(resultId).innerHTML = "jsonlite::fromJSON('" + cartesianPolygon + "')"
       }
-    
-
 
   })
+
+  $('#clear_annotations').on('click', function () {
+    canvas.remove.apply(canvas, canvas.getObjects().concat());
+    canvas.renderAll();
+  });
+
+
 
 }

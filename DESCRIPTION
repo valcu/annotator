@@ -21,4 +21,6 @@ Imports:
     htmlwidgets,
     knitr
 Suggests:
-    testthat
+    testthat,
+    sf,
+    terra
