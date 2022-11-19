@@ -1,4 +1,4 @@
 library(testthat)
-library(dbo)
+library(annotator)
 
 test_check("annotator")

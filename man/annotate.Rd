@@ -18,6 +18,7 @@ Annotate an image
 }
 \examples{
 if(interactive()) {
+require(annotator)
 im = system.file("sample_images", "PUFFIN","010.jpg" , package = "annotator")
 annotate(im)
 }

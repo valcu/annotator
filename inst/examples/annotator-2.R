@@ -6,9 +6,12 @@ if(interactive()) {
 
 library(shiny)
 library(annotator)
+library(glue)
+library(terra)
+library(sf)
 
-im_ids = paste0(1:20 |> stringr::str_pad(3, pad = 0), ".jpg")
-ims = sapply(im_ids, function(i) system.file("sample_images", "PUFFIN", i, package = "annotator"))
+ims = system.file("sample_images", "aves", package = "annotator") |> list.files(full.names = TRUE)
+names(ims) = basename(ims)
 
 ui <-  fluidPage(
 
@@ -16,22 +19,25 @@ ui <-  fluidPage(
 
   selectInput("pid", "photo", choices = ims),
 
-  annotatorOutput("annotation"),
+fluidRow(
+  column(6,
+    align = "right",
+    annotatorOutput("annotation")
+  ), 
   
-  tags$h4("XY coordinates (pixels)"),
+  column(6,
+    align = "left",
+    uiOutput("results")
+  )
 
-  verbatimTextOutput("results") 
 
+
+)
 )
 
 server <- function(input, output) {
 
-  # observe(print(reactiveValuesToList(input)))
 
-  O <<- list()
-
-
- 
   output$annotation <- renderAnnotator({
    
     annotate(input$pid, resultId = "res_id")
@@ -39,21 +45,42 @@ server <- function(input, output) {
 
  })
 
-
-     
-
-
-
-  output$results <- renderPrint({
+  output$results <- renderUI({
 
     req(input$res_id)
 
-    o = input$res_id
-    O <<- append(O, o)
+    o = input$res_id |>
+      jsonlite::fromJSON() |>
+      st_as_sf(coords = c("x", "y")) |>
+      st_combine() |>
+      st_cast("LINESTRING") |>
+      st_cast("POLYGON")
+    
 
-      
-    lapply(O, function(x)  jsonlite::fromJSON(x) )
+    assign("o", o, .GlobalEnv) 
+    assign("r", rast(input$pid), .GlobalEnv)
+    
+    x = extract(r, vect(o))
 
+    avcol = sapply(x, median, 2)[-1]
+    avcol = glue_collapse(avcol, sep = ",")
+    avcol = glue("rgb({avcol})")
+    
+
+    A = glue("<h3><code>{st_as_text(o)}</code><h3>") 
+
+    B = glue('<h1>
+    Image size = {prod(dim(r)[1:2])} pixels <br>
+    Selected area = {st_area(o) |> round(2)} pixels <br>
+    <p style="color:{avcol};"> Median color = {avcol} <br>
+    <svg width="200" height="30">
+      <rect width="200" height="30" style="fill:{avcol};" />
+    </svg>
+    </h1>
+
+    ')
+
+    glue_collapse(c(A, B), sep = "<hr>") |> HTML()
 
   })
 
