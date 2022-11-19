@@ -1,8 +1,9 @@
 
 function annotator(el, im, W, H, resultId) {
 
-
-  $(' <canvas id="annotator_canvas"> </canvas>').appendTo(el);
+  
+  // $('#annotator_canvas').remove();
+  // $(' <canvas id="annotator_canvas"> </canvas>').appendTo(el);
 
   let canvas = new fabric.Canvas("annotator_canvas", {
   });
@@ -17,10 +18,7 @@ function annotator(el, im, W, H, resultId) {
   canvas.freeDrawingBrush.decimate = 10
   canvas.freeDrawingBrush.color = 'rgba(255,93,0,1)'
 
-
-  localStorage.removeItem('annot');
-
-
+  
   canvas.on('path:created', function (e) {
     var path = e.path.path
     var points = []
@@ -37,7 +35,6 @@ function annotator(el, im, W, H, resultId) {
       stroke: 'rgba(255,93,0,1)',
       opacity: 0.5,
       strokeWidth: 5,
-      description: 'aaa',
       fill: 'gray'
 
     })
@@ -46,6 +43,7 @@ function annotator(el, im, W, H, resultId) {
 
     polygon = Array.from(points)
 
+  
     //console.table(polygon)
 
     //output
@@ -53,16 +51,24 @@ function annotator(el, im, W, H, resultId) {
 
     var cartesianPolygon = JSON.stringify(cartesianPolygon)
 
+    
     if (HTMLWidgets.shinyMode) {
+      
+      $("#pid").on("change", function () {
+        //Shiny.onInputChange(canvas.dispose() ) ;
+      
+      })
 
       Shiny.setInputValue(resultId, cartesianPolygon)
+
     } else {
       var e = '<div id="' + resultId + '"> </div>'
-      alert(e)
+
       $(e).appendTo(el);
       document.getElementById(resultId).innerHTML = "jsonlite::fromJSON('" + cartesianPolygon + "')"
       }
     
+
 
   })
 

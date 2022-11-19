@@ -7,12 +7,14 @@ if(interactive()) {
 library(shiny)
 library(annotator)
 
-im_id = paste0(sample(1:20, 1) |> stringr::str_pad(3, pad = 0), ".jpg")
-im = system.file("sample_images", "PUFFIN", im_id , package = "annotator")
+im_ids = paste0(1:20 |> stringr::str_pad(3, pad = 0), ".jpg")
+ims = sapply(im_ids, function(i) system.file("sample_images", "PUFFIN", i, package = "annotator"))
 
 ui <-  fluidPage(
 
   tags$h4("Draw some polygons on the image"),
+
+  selectInput("pid", "photo", choices = ims),
 
   annotatorOutput("annotation"),
   
@@ -24,13 +26,22 @@ ui <-  fluidPage(
 
 server <- function(input, output) {
 
+  # observe(print(reactiveValuesToList(input)))
+
   O <<- list()
 
 
+ 
   output$annotation <- renderAnnotator({
-    annotate(im, resultId = "res_id")
-  
-  })
+   
+    annotate(input$pid, resultId = "res_id")
+
+
+ })
+
+
+     
+
 
 
   output$results <- renderPrint({

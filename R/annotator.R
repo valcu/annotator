@@ -27,7 +27,7 @@ annotate <- function(im, resultId = "annot_id") {
     x,
     package   = "annotator", 
     width = W,
-    height = H,
+    height = H
 
   )
 
@@ -38,7 +38,7 @@ annotate <- function(im, resultId = "annot_id") {
 
 
 #' @export
-annotatorOutput <- function(outputId, width = "100%", height = "400px") {
+annotatorOutput <- function(outputId, width = "auto", height = "auto") {
   
   shinyWidgetOutput(outputId, "fabric", width, height, package = "annotator")
 

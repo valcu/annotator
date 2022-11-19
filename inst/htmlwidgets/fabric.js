@@ -3,22 +3,22 @@ HTMLWidgets.widget({
   name: "fabric",
   type: "output",
 
-  initialize: function (el, width, height) {
-    
-    
-  },
+
   
-  resize: function (el, width, height, instance) {
+  renderValue: function (el, x) {
+
+    $('div.canvas-container').remove();
+    $('#upper-canvas ').remove();
+    $('#lower-canvas').remove();
+    $('#annotator_canvas').remove();
     
-  },
-  
-  renderValue: function (el, x, instance) {
-    
-  
-    annotator(el, x.im, x.W, x.H, x.resultId) 
+    $(' <canvas id="annotator_canvas"> </canvas>').appendTo(el);
 
 
+  
+     annotator(el, x.im, x.W, x.H, x.resultId) 
 
     }
+    
 
   })
