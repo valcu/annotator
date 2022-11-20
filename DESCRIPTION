@@ -23,5 +23,7 @@ Imports:
 Suggests:
     testthat (>= 3.0.0),
     sf,
-    terra
+    terra,
+    spelling
 Config/testthat/edition: 3
+Language: en-US

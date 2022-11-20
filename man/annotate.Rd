@@ -2,19 +2,20 @@
 % Please edit documentation in R/annotator.R
 \name{annotate}
 \alias{annotate}
-\title{Annotate an image
-Annotate an image}
+\title{Create an annotation widget}
 \usage{
 annotate(im, resultId = "annot_id")
 }
 \arguments{
-\item{im}{the input image. If missing a transparent 800x600 png is used.}
+\item{im}{the input image. If missing, a transparent 800x600 png is used.}
 
-\item{resultId}{the id of the div in the UI where the annotation (the drawn polygon) is stored. Only relevant when the widget is used in shiny. Defaults to "annot_id".}
+\item{resultId}{the id of the div in the UI where the annotation (the drawn polygon) is stored.
+Only relevant when the widget is used in shiny. Defaults to "annot_id".}
 }
 \description{
-Annotate an image
-Annotate an image
+This function creates an annotation using \link{htmlwidgets}.
+The widget can be rendered on HTML pages generated from Shiny or
+other applications.
 }
 \examples{
 if(interactive()) {
