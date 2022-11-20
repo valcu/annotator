@@ -12,7 +12,7 @@
 
 The main function of the package is `annotate(path_to_image)`. The user can paint, and subsequently save, one or several polygons on the image. 
 
-The shiny examples in the  `./examples/` directory shows how to create annotation pipelines.
+The examples bundled with the package demonstrate how to create annotation pipelines.
 
 
 Installation
