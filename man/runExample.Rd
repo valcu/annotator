@@ -17,9 +17,8 @@ Launch Shiny example applications bundled in annotator.
 \examples{
 ## Only run this example in interactive R sessions
 if (interactive()) {
- require(annotator)
- runExample("01_hello")
- runExample("02_pipelineSimple")
+ annotator::runExample("01_hello")
+ annotator::runExample("02_pipelineSimple")
 
  # Print the directory containing the code for all examples
  system.file("examples", package = "annotator")

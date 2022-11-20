@@ -8,11 +8,9 @@
 
 `annotator` is based on [fabric.js](http://fabricjs.com/), a Javascript HTML5 canvas library and [htmlwidgets](http://www.htmlwidgets.org/), a package that provides a framework for creating R bindings to JavaScript libraries.
 
-`annotator`  makes it easy to create annotation pipelines in  [shiny](ttps://shiny.rstudio.com) . 
+The main function of the package is `annotate(path_to_image)`. Polygons can be outlined on the image and polygon's coordinates are returned after each draw. 
 
-The main function of the package is `annotate(path_to_image)`. The user can paint, and subsequently save, one or several polygons on the image. 
-
-The examples bundled with the package demonstrate how to create annotation pipelines.
+`annotator`  makes it easy to create annotation pipelines in  [shiny](https://shiny.rstudio.com).
 
 
 Installation
