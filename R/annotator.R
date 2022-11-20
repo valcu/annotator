@@ -6,14 +6,14 @@
 #' other applications.
 #'  
 #' @param im the input image. If missing, a transparent 800x600 png is used.
-#' @param resultId the id of the div in the UI where the annotation (the drawn polygon) is stored. 
+#' @param resultId the id of the `div` in the `UI` where the annotation (the drawn polygon) is stored. 
 #' Only relevant when the widget is used in shiny. Defaults to "annot_id".
 #' @md
 #' @export
 #' @examples 
 #' if(interactive()) {
 #' require(annotator)
-#' im = system.file("sample_images", "aves","10.jpg" , package = "annotator")
+#' im = system.file("sample_images", "aves","5.jpg" , package = "annotator")
 #' annotate(im)
 #' }
 
@@ -61,6 +61,9 @@ annotate <- function(im, resultId = "annot_id") {
 #' @param ...  further arguments to pass to [htmlwidgets::shinyWidgetOutput()] e.g. `inline`.
 #' @md 
 #' @export
+
+
+
 annotatorOutput <- function(outputId, width = "auto", height = "auto", ...) {
   
   shinyWidgetOutput(outputId, "fabric", width, height, package = "annotator", ...)

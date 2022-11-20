@@ -9,7 +9,7 @@ test_that("annotate has the correct class", {
 })
 
 test_that("annotate accepts an image", {
-  im = system.file("sample_images", "aves", "10.jpg", package = "annotator")
+  im = system.file("sample_images", "aves", "1.jpg", package = "annotator")
   class(annotate(im)) %in% c("fabric", "htmlwidget") |>
   all() |>
   expect_true()

@@ -9,7 +9,7 @@ annotate(im, resultId = "annot_id")
 \arguments{
 \item{im}{the input image. If missing, a transparent 800x600 png is used.}
 
-\item{resultId}{the id of the div in the UI where the annotation (the drawn polygon) is stored.
+\item{resultId}{the id of the \code{div} in the \code{UI} where the annotation (the drawn polygon) is stored.
 Only relevant when the widget is used in shiny. Defaults to "annot_id".}
 }
 \description{
@@ -20,7 +20,7 @@ other applications.
 \examples{
 if(interactive()) {
 require(annotator)
-im = system.file("sample_images", "aves","10.jpg" , package = "annotator")
+im = system.file("sample_images", "aves","5.jpg" , package = "annotator")
 annotate(im)
 }
 }

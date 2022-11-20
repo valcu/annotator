@@ -20,6 +20,9 @@ function annotator(el, im, W, H, resultId) {
 
   
   canvas.on('path:created', function (e) {
+
+    e.path.id = fabric.Object.__uid++
+
     var path = e.path.path
     var points = []
     for (var i = 0; i < path.length; i++) {
@@ -43,6 +46,9 @@ function annotator(el, im, W, H, resultId) {
 
     polygon = Array.from(points)
 
+    polygon.forEach((item, i) => {
+      polygon[i].pid = e.path.id;
+    });    
   
     //console.table(polygon)
 

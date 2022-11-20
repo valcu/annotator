@@ -3,6 +3,7 @@
 export(annotate)
 export(annotatorOutput)
 export(renderAnnotator)
+export(runExample)
 import(glue)
 import(htmlwidgets)
 import(methods)
