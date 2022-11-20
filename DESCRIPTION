@@ -21,6 +21,7 @@ Imports:
     htmlwidgets,
     knitr
 Suggests:
-    testthat,
+    testthat (>= 3.0.0),
     sf,
     terra
+Config/testthat/edition: 3

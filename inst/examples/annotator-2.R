@@ -68,8 +68,8 @@ server <- function(input, output, session) {
       st_cast("POLYGON")
     
 
-    assign("o", o, .GlobalEnv) 
-    assign("r", rast(input$pid), .GlobalEnv)
+    # assign("o", o, .GlobalEnv) 
+    # assign("r", rast(input$pid), .GlobalEnv)
     
     x = extract(r, vect(o))
 

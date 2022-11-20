@@ -1,7 +1,7 @@
 #' Annotate an image
 #' Annotate an image 
-#' @param im input image
-#' @param resultId the id  of the div in the UI where the annotation (the drawn polygon) is stored. Only relevant when the widget is used in shiny.
+#' @param im the input image. If missing a transparent 800x600 png is used.
+#' @param resultId the id of the div in the UI where the annotation (the drawn polygon) is stored. Only relevant when the widget is used in shiny. Defaults to "annot_id".
 #' @export
 #' @examples 
 #' if(interactive()) {
@@ -12,12 +12,21 @@
 
 annotate <- function(im, resultId = "annot_id") {
 
-  ii = load.image(im)
-  W = width(ii)
-  H = height(ii)
+  if (missing(im)) {
+    im64 = empty_png()
+    W = 600
+    H = 800
+  } else {
+    ii = load.image(im)
+    W = width(ii)
+    H = height(ii)
+    im64 = knitr::image_uri(im)
+
+    }
+  
 
   x <- list(
-    im = knitr::image_uri(im), 
+    im = im64, 
     W = W,
     H = H, 
     resultId = resultId
@@ -37,15 +46,24 @@ annotate <- function(im, resultId = "annot_id") {
 }
 
 
-
+#' Widget output function for use in Shiny
+#'
+#' @param outputId The name of the input.
+#' @param width   in CSS units, default to "auto".
+#' @param height  in CSS units, default to "auto".
+#' @param ...  further arguments to pass to [htmlwidgets::shinyWidgetOutput()] e.g. `inline`.
+#' @md 
 #' @export
-annotatorOutput <- function(outputId, width = "auto", height = "auto") {
+annotatorOutput <- function(outputId, width = "auto", height = "auto", ...) {
   
-  shinyWidgetOutput(outputId, "fabric", width, height, package = "annotator")
+  shinyWidgetOutput(outputId, "fabric", width, height, package = "annotator", ...)
 
 }
 
-
+#' Widget render function for use in Shiny
+#' @param expr An annotator expression.
+#' @param env A environment. Default to `parent.frame()`.
+#' @param quoted  A boolean value.
 #' @export
 renderAnnotator <- function(expr, env = parent.frame(), quoted = FALSE) {
 
