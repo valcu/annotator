@@ -1,10 +1,10 @@
 Package: annotator
-Title: Image Annotation
+Title: Image Annotation and Polygon Outlining using Free Drawing
 Version: 0.0.1
 Authors@R: 
     person("Mihai", "Valcu", , "mvalcu@gwdg.de", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6907-7802"))
-Description: Image annotation and polygon outlining using free drawing.
+Description: Provides functions to create image annotations through polygon outlining. Annotator has the same function as 'graphics::locator()' but achieves its purpose through drawing, rather than multiple mouse clicks. It is based on 'fabric.js' JavaScript library and the 'htmlwidgets' package. 
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
