@@ -1,5 +1,5 @@
 Package: annotator
-Title: Image annotation
+Title: Image Annotation
 Version: 0.0.1
 Authors@R: 
     person("Mihai", "Valcu", , "mvalcu@gwdg.de", role = c("aut", "cre"),
