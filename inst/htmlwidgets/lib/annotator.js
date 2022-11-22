@@ -1,9 +1,7 @@
 
-function annotator(el, im, W, H, resultId) {
+function annotator(el, im, W, H, resultId, brushWidth, brushColor, opacity , fill) {
 
-  
-  // $('#annotator_canvas').remove();
-  // $(' <canvas id="annotator_canvas"> </canvas>').appendTo(el);
+
 
   let canvas = new fabric.Canvas("annotator_canvas", {
   });
@@ -14,11 +12,9 @@ function annotator(el, im, W, H, resultId) {
 
   canvas.isDrawingMode = true
 
-  canvas.freeDrawingBrush.width = 5
-  canvas.freeDrawingBrush.decimate = 10
-  canvas.freeDrawingBrush.color = 'rgba(255,93,0,1)'
+  canvas.freeDrawingBrush.width = brushWidth
+  canvas.freeDrawingBrush.color = brushColor
 
-  
   canvas.on('path:created', function (e) {
 
     e.path.id = fabric.Object.__uid++
@@ -35,13 +31,13 @@ function annotator(el, im, W, H, resultId) {
     }
 
     shape = new fabric.Polygon(points, {
-      stroke: 'rgba(255,93,0,1)',
-      opacity: 0.5,
-      strokeWidth: 5,
-      fill: 'gray'
+      stroke: brushColor,
+      opacity: opacity,
+      strokeWidth: brushWidth,
+      fill: fill
 
     })
-
+    
     canvas.add(shape)
 
     polygon = Array.from(points)
@@ -50,7 +46,6 @@ function annotator(el, im, W, H, resultId) {
       polygon[i].pid = e.path.id;
     });    
   
-    //console.table(polygon)
 
     //output
     cartesianPolygon = polygon.map(item => ({ ...item, y: H - item.y }))
@@ -60,10 +55,6 @@ function annotator(el, im, W, H, resultId) {
     
     if (HTMLWidgets.shinyMode) {
       
-      $("#pid").on("change", function () {
-        //Shiny.onInputChange(canvas.dispose() ) ;
-      
-      })
 
       Shiny.setInputValue(resultId, cartesianPolygon)
 

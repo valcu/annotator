@@ -11,6 +11,9 @@ runExample(example, ...)
 
 \item{...}{further arguments to pass to  \code{\link[shiny:runApp]{shiny::runApp()}}}
 }
+\value{
+No return value, called for its side effects.
+}
 \description{
 Launch Shiny example applications bundled in annotator.
 }

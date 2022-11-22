@@ -12,7 +12,7 @@ empty_png <- function() {
 #'
 #' @param example The name of the example to run. Available are: `01_hello`, `02_pipelineSimple`
 #' @param ... further arguments to pass to  [shiny::runApp()]
-#' @md 
+#' @return No return value, called for its side effects.
 #' @examples
 #' ## Only run this example in interactive R sessions
 #' if (interactive()) {
@@ -22,6 +22,7 @@ empty_png <- function() {
 #'  # Print the directory containing the code for all examples
 #'  system.file("examples", package = "annotator")
 #' }
+#' @md 
 #' @export
 runExample <- function(example, ...) {
   
