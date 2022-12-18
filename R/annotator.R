@@ -22,11 +22,11 @@
 #'   annotate(im)
 #' }
 #'
-annotate <- function(im, resultId = "annot_id", brushWidth = 4, brushColor = "red", opacity = 0.5, fill = "grey") {
+annotate <- function(im,resultId = "annot_id", brushWidth = 4, brushColor = "red", opacity = 0.5, fill = "grey") {
   if (missing(im)) {
     im64 <- empty_png()
   } else {
-    im64 <- knitr::image_uri(im)
+    im64 <- xfun::base64_uri(im)
   }
 
   x <- list(
@@ -37,6 +37,8 @@ annotate <- function(im, resultId = "annot_id", brushWidth = 4, brushColor = "re
     opacity = opacity, 
     fill = fill
   )
+
+
 
   createWidget(
     name = "fabric",

@@ -21,9 +21,9 @@ Installation
 
 Stable version from CRAN:  
 ``` r
-remotes::install_github("valcu/annotator")
+install.packages("annotator")
 ```
-Developememt version from GITHUB:  
+Developement version from GITHUB:  
 ``` r
 remotes::install_github("valcu/annotator")
 ```

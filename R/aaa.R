@@ -10,6 +10,6 @@
 #'
 #' @import     methods utils
 #' @import     shiny htmlwidgets
-#' @importFrom knitr image_uri
+#' @importFrom xfun base64_uri
 #'
 NULL
