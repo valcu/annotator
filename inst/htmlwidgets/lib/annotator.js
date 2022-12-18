@@ -96,6 +96,40 @@ function annotator(el, im, resultId, brushWidth, brushColor, opacity , fill) {
 
   });
 
+  // resize canvas
+  function resizeAnnotatorCanvas(scale) {
+
+    var objects = canvas.getObjects();
+    for (var i in objects) {
+      objects[i].scaleX = objects[i].scaleX * scale;
+      objects[i].scaleY = objects[i].scaleY * scale;
+      objects[i].left = objects[i].left * scale;
+      objects[i].top = objects[i].top * scale;
+      objects[i].setCoords();
+    }
+
+    canvas.backgroundImage.scaleX = canvas.backgroundImage.scaleX * scale;
+    canvas.backgroundImage.scaleY = canvas.backgroundImage.scaleY * scale;
+
+    canvas.discardActiveObject();
+    canvas.setWidth(canvas.getWidth() * scale);
+    canvas.setHeight(canvas.getHeight() * scale);
+    canvas.renderAll();
+    canvas.calcOffset();
+
+
+  }
+
+  // todo: should depend on key bindings instead of DOM
+
+  $(document).ready(function () {
+    
+    $('#resize').click(function () {
+      resizeAnnotatorCanvas($('#resize-width').val());
+      $('#resize-width').val('');
+    });
+  
+  });
 
  
 
