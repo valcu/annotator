@@ -2,8 +2,9 @@
 # A simple pipeline: using all images in a directory.
 
 
-library(shiny)
 library(annotator)
+library(shiny)
+library(keys)
 library(glue)
 library(terra)
 library(sf)
@@ -14,8 +15,14 @@ names(ims) = basename(ims)
 imgsrc = system.file("sample_images", "datasource.txt", package = "annotator")|>read.delim()
 
 ui <-  fluidPage(
+    useKeys(), 
+     keysInput("keys", c("left", "right")),
 
-    tags$h4("Draw some polygons on the image"),
+    tags$h4(
+      HTML("Draw some polygons on the image. <br>
+          Use the left and right arrow keys to navigate.")
+    )
+    ,
 
     selectInput("pid", "photo", choices = ims),
     actionButton("next_photo", "Next photo"),
@@ -23,7 +30,7 @@ ui <-  fluidPage(
     fluidRow(
     column(6,
       align = "right",
-      annotatorOutput("annotation")
+      annotatorOutput(outputId = "annotation")
     ), 
     
     column(6,
@@ -37,11 +44,24 @@ server <- function(input, output, session) {
   observeEvent(input$next_photo, {
     which_pid = which(ims == input$pid)
 
-    print(ims[which_pid])
-    print(input$pid)
-
     updateSelectInput(session, "pid", selected = ims[which_pid + 1])
   })
+
+  observeEvent(input$keys, {
+    
+    which_pid = which(ims == input$pid)
+
+    switch(input$keys,
+      "left"  = updateSelectInput(session, "pid", selected = ims[which_pid - 1]),
+      "right" = updateSelectInput(session, "pid", selected = ims[which_pid + 1])
+    )
+  
+  })
+
+
+
+
+
 
 
   output$annotation <- renderAnnotator({
