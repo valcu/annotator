@@ -15,6 +15,7 @@ function annotator(el, im, resultId, brushWidth, brushColor, opacity , fill) {
 
 
   let canvas = new fabric.Canvas("annotator_canvas", {
+    containerClass: 'annotator-canvas' 
   })
   
 
@@ -80,7 +81,8 @@ function annotator(el, im, resultId, brushWidth, brushColor, opacity , fill) {
       Shiny.setInputValue(resultId, cartesianPolygon)
 
     } else {
-      var e = '<div id="' + resultId + '"> </div>'
+      var e = '<div id="' + resultId + '" class="annotator-output" > </div>'
+      console.log(e)
 
       $(e).appendTo(el);
       document.getElementById(resultId).innerHTML = "jsonlite::fromJSON('" + cartesianPolygon + "')"

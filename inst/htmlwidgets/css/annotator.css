@@ -1,0 +1,32 @@
+button.annotator {
+  display: inline-block;
+  padding: 0.2em 1.45em;
+  margin: 0.1em;
+  border: 0.1em solid #e6e6e6;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  color: #000000;
+  background-color: #f5f2ea;
+  text-align: center;
+  position: relative;
+
+
+}
+
+button.annotator::before {
+  content: "\238C";
+  font-weight: bold;
+}
+
+
+.annotator-canvas {
+    width: auto;
+    height: auto;
+  }
+
+
+.annotator-output {
+    font-weight: bold;
+    color: #555454;
+  }
