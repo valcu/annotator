@@ -26,6 +26,7 @@ annotate <- function(im,resultId = "annot_id", brushWidth = 4, brushColor = "red
   if (missing(im)) {
     im64 <- empty_png()
   } else {
+    # TODO: check if image is supported by the browser.
     im64 <- xfun::base64_uri(im)
   }
 
