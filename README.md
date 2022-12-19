@@ -6,7 +6,7 @@
 
 # Image annotation using free drawing.
 
-`annotator` provides functions to create image annotations through polygon outlining. Annotator has the same function as 'graphics::locator()' but achieves its purpose through drawing, rather than multiple mouse clicks. 
+`annotator` provides functions to create image annotations through polygon outlining. Annotator has the same function as `graphics::locator()` but achieves its purpose through drawing, rather than multiple mouse clicks. 
 
 `annotator` is based on [fabric.js](http://fabricjs.com/), a Javascript HTML5 canvas library and [htmlwidgets](http://www.htmlwidgets.org/), a package that provides a framework for creating R bindings to JavaScript libraries.
 

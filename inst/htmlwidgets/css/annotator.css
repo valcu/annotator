@@ -14,8 +14,13 @@ button.annotator {
 
 }
 
-button.annotator::before {
+#clear_annotations::before {
   content: "\238C";
+  font-weight: bold;
+}
+
+#copy_annotations::before {
+  content: "\1F4CB";
   font-weight: bold;
 }
 

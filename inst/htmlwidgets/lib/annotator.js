@@ -72,20 +72,25 @@ function annotator(el, im, resultId, brushWidth, brushColor, opacity , fill) {
     cartesianPolygon = polygon.map(item => ({ ...item, y: canvas.height - item.y }))
       
     var cartesianPolygon = JSON.stringify(cartesianPolygon)
-
-
     
     if (HTMLWidgets.shinyMode) {
-      
-
+     
       Shiny.setInputValue(resultId, cartesianPolygon)
 
     } else {
-      // TODO: pass result to clipboard rather than div. popup for info
-      var e = '<div id="' + resultId + '" class="annotator-output" > </div>'
+      var copyann = document.getElementById('copy_annotations');
+      var clipboard = new ClipboardJS(copyann);
 
-      $(e).appendTo(el);
-      document.getElementById(resultId).innerHTML = "jsonlite::fromJSON('" + cartesianPolygon + "')"
+      // Pass result to clipboard
+      var out = "jsonlite::fromJSON('" + cartesianPolygon + "')"
+      
+      $(el).find("#copy_annotations").attr('data-clipboard-text', out);
+
+      clipboard.on('success', function (e) {
+        // TODO animate button and change text on click to copied.
+      });      
+
+
       }
 
   })
@@ -122,7 +127,7 @@ function annotator(el, im, resultId, brushWidth, brushColor, opacity , fill) {
 
   }
 
-  // todo: should depend on key bindings instead of DOM
+  // TODO: should depend on key bindings instead of DOM
 
   $(document).ready(function () {
     

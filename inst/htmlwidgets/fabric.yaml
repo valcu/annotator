@@ -10,6 +10,11 @@ dependencies:
     src: htmlwidgets/lib/jquery-v3.6.1
     script: jquery.min.js
 
+  - name: clipboard
+    version: 2.0.11
+    src: htmlwidgets/lib/clipboard-v2.0.11
+    script: clipboard.min.js
+
   - name: annotator
     version: 0.0.1
     src: htmlwidgets/lib
