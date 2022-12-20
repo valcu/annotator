@@ -18,7 +18,7 @@
 #' @examples
 #' if (interactive()) {
 #'   require(annotator)
-#'   im = system.file("sample_images", "aves", "5.jpg", package = "annotator")
+#'   im = system.file("sample_images", "aves", "2.webp", package = "annotator")
 #'   annotate(im)
 #' }
 #'

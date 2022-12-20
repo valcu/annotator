@@ -73,7 +73,7 @@ server <- function(input, output, session) {
 
     req(input$res_id)
 
-    d = input$res_id |> jsonlite::fromJSON()
+    d = input$res_id |> data.table::fread()
     ds = st_as_sf(d, coords = c("x", "y")) |>
       st_combine() |>
       st_cast("LINESTRING") |>

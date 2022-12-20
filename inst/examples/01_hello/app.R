@@ -3,7 +3,6 @@
 
 library(shiny)
 library(annotator)
-library(jsonlite)
 
 im <- system.file("sample_images", "aves", "1.jpg", package = "annotator")
 
@@ -37,7 +36,7 @@ server <- function(input, output) {
 
     req(input$res_id)
 
-    jsonlite::fromJSON(input$res_id)
+    data.table::fread(input$res_id)
 
 
   })

@@ -23,7 +23,6 @@ Suggests:
     glue,
     sf,
     terra,
-    jsonlite,
     keys,
     spelling
 Config/testthat/edition: 3
