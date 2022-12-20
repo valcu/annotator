@@ -17,7 +17,7 @@ dependencies:
 
   - name: annotator
     version: 0.0.1
-    src: htmlwidgets/lib
+    src: htmlwidgets/lib/annotator-v0.0.1
     script: annotator.js
  
   - name: annotator-css

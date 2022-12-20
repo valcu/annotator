@@ -1,7 +1,5 @@
 
 
-
-
 function annotator(el, im, resultId, brushWidth, brushColor, opacity , fill) {
   
   // making sure image dims are read before canvas is initialized, or the img is not always displayed
@@ -37,7 +35,7 @@ function annotator(el, im, resultId, brushWidth, brushColor, opacity , fill) {
   canvas.freeDrawingBrush.color = brushColor
 
   canvas.on('path:created', function (e) {
-
+    
     e.path.id = fabric.Object.__uid++
 
     var path = e.path.path
@@ -52,27 +50,39 @@ function annotator(el, im, resultId, brushWidth, brushColor, opacity , fill) {
     }
 
     shape = new fabric.Polygon(points, {
-      stroke: brushColor,
-      opacity: opacity,
+      stroke     : brushColor,
+      opacity    : opacity,
       strokeWidth: brushWidth,
-      fill: fill
+      fill       : fill
 
     })
     
     canvas.add(shape)
 
+    // add pid within polygon
+    let pidLoc = shape.getCenterPoint();
+
+    var text = new fabric.Text(e.path.id.toString(), {
+      fontSize: 16,
+      fontWeight: "bold",
+    });
+
+    text.setPositionByOrigin(pidLoc, "center", "center");
+    canvas.add(text);
+
+
+    // create polygon output
     polygon = Array.from(points)
 
     polygon.forEach((item, i) => {
       polygon[i].pid = e.path.id;
     });    
-  
-
-    //output: H - y is the conversion from image to cartesian coords
+    //H - y is the conversion from image to cartesian coords
     cartesianPolygon = polygon.map(item => ({ ...item, y: canvas.height - item.y }))
       
     var cartesianPolygon = JSON.stringify(cartesianPolygon)
     
+    // place output depending on context
     if (HTMLWidgets.shinyMode) {
      
       Shiny.setInputValue(resultId, cartesianPolygon)
@@ -84,17 +94,26 @@ function annotator(el, im, resultId, brushWidth, brushColor, opacity , fill) {
       // Pass result to clipboard
       var out = "jsonlite::fromJSON('" + cartesianPolygon + "')"
       
-      $(el).find("#copy_annotations").attr('data-clipboard-text', out);
+      $('#copy_annotations').attr('data-clipboard-text', out);
 
-      clipboard.on('success', function (e) {
-        // TODO animate button and change text on click to copied.
-      });      
+      // feeback on copy
+      clipboard.on("success", function () {
+    
+          $("#copy_annotations").html("Polygon " + e.path.id + " copied!");
+    
+          setTimeout(() => {
+            $('#copy_annotations').html("Copy");
+
+          }, 2000);
+
+      });  
 
 
       }
 
-  })
+  }) // end canvas.on
 
+  // clear canvas and remove polygons
   $('#clear_annotations').on('click', function () {
     canvas.remove.apply(canvas, canvas.getObjects().concat());
     canvas.renderAll();
@@ -102,42 +121,5 @@ function annotator(el, im, resultId, brushWidth, brushColor, opacity , fill) {
     $("#" + resultId).empty();
 
   });
-
-  // resize canvas
-  function resizeAnnotatorCanvas(scale) {
-
-    var objects = canvas.getObjects();
-    for (var i in objects) {
-      objects[i].scaleX = objects[i].scaleX * scale;
-      objects[i].scaleY = objects[i].scaleY * scale;
-      objects[i].left = objects[i].left * scale;
-      objects[i].top = objects[i].top * scale;
-      objects[i].setCoords();
-    }
-
-    canvas.backgroundImage.scaleX = canvas.backgroundImage.scaleX * scale;
-    canvas.backgroundImage.scaleY = canvas.backgroundImage.scaleY * scale;
-
-    canvas.discardActiveObject();
-    canvas.setWidth(canvas.getWidth() * scale);
-    canvas.setHeight(canvas.getHeight() * scale);
-    canvas.renderAll();
-    canvas.calcOffset();
-
-
-  }
-
-  // TODO: should depend on key bindings instead of DOM
-
-  $(document).ready(function () {
-    
-    $('#resize').click(function () {
-      resizeAnnotatorCanvas($('#resize-width').val());
-      $('#resize-width').val('');
-    });
-  
-  });
-
- 
 
 }

@@ -42,7 +42,7 @@ annotate <- function(im,resultId = "annot_id", brushWidth = 4, brushColor = "red
 
 
   createWidget(
-    name = "fabric",
+    name = "annotator_fabric",
     x,
     package = "annotator"
   )
@@ -66,7 +66,7 @@ annotate <- function(im,resultId = "annot_id", brushWidth = 4, brushColor = "red
 
 
 annotatorOutput <- function(outputId, width = "auto", height = "auto", ...) {
-  shinyWidgetOutput(outputId, "fabric", width, height, package = "annotator", ...)
+  shinyWidgetOutput(outputId, "annotator_fabric", width, height, package = "annotator", ...)
 }
 
 #' Widget render function for use in Shiny

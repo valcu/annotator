@@ -1,11 +1,14 @@
 
 # Basic example
 
-library(shiny)
 library(annotator)
-library(jsonlite)
+library(shiny)
+library(glue)
+library(terra)
+library(sf)
 
-im <- system.file("sample_images", "aves", "1.jpg", package = "annotator")
+im <- system.file("sample_images", "spatial", "meuse.png", package = "annotator")
+
 
 ui <-  fluidPage(
 

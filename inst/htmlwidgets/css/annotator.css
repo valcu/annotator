@@ -1,3 +1,7 @@
+
+
+
+
 button.annotator {
   display: inline-block;
   padding: 0.2em 1.45em;
@@ -13,6 +17,17 @@ button.annotator {
 
 
 }
+
+button.annotator:hover {
+  background-color: #555555;
+  color: white;
+}
+
+button.annotator:active {
+  transform: translateY(-1px);
+}
+
+
 
 #clear_annotations::before {
   content: "\238C";

@@ -106,9 +106,7 @@ server <- function(input, output, session) {
       </svg>
     </h1>
 
-    <footer>
-    {imgsrc[thissrc, ]}
-    </footer>
+ 
 
     ') |> HTML()
   })
