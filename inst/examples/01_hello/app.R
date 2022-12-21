@@ -3,7 +3,6 @@
 
 library(shiny)
 library(annotator)
-library(jsonlite)
 
 im <- system.file("sample_images", "aves", "1.jpg", package = "annotator")
 

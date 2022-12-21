@@ -1,5 +1,4 @@
 
-
 function annotator(el, im, resultId, brushWidth, brushColor, opacity , fill) {
   // making sure image dims are read before canvas is initialized, or the img is not always displayed
   function imageDims(src) {
