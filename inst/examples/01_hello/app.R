@@ -9,20 +9,14 @@ im <- system.file("sample_images", "aves", "1.jpg", package = "annotator")
 
 ui <-  fluidPage(
 
-  fluidRow(
-    column(6,
+  mainPanel(
       tags$h4("Draw some polygons on the image"),
-      align = "right",
       annotatorOutput("annotation")
     ),
-    column(6,
+   sidebarPanel(
       tags$h4("XY cartesian coordinates (pixels)"),
-      align = "left",
       tableOutput("results")
     )
-  ), 
-
-
   )
 
 server <- function(input, output) {
@@ -37,7 +31,8 @@ server <- function(input, output) {
 
     req(input$res_id)
 
-    jsonlite::fromJSON(input$res_id)
+    parse(text=input$res_id)|>eval()
+
 
 
   })

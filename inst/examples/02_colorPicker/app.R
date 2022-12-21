@@ -12,7 +12,6 @@ library(sf)
 ims = system.file("sample_images", "aves", package = "annotator") |> list.files(full.names = TRUE)
 names(ims) = basename(ims)
 
-imgsrc = system.file("sample_images", "datasource.txt", package = "annotator")|>read.delim()
 
 ui <-  fluidPage(
     useKeys(), 
@@ -73,13 +72,13 @@ server <- function(input, output, session) {
 
     req(input$res_id)
 
-    d = input$res_id |> jsonlite::fromJSON()
+    d = parse(text = input$res_id) |> eval() |> data.frame()
     ds = st_as_sf(d, coords = c("x", "y")) |>
       st_combine() |>
       st_cast("LINESTRING") |>
       st_cast("POLYGON")
 
-    pid = isolate(d$pid[1])
+    pid = isolate(d$id[1])
 
     r = rast(input$pid)
 
@@ -89,12 +88,12 @@ server <- function(input, output, session) {
     avcol = glue_collapse(avcol, sep = ",")
     avcol = glue("rgb({avcol})")
 
-    thissrc = basename(input$pid) |> stringr::str_remove("\\.jpg")
 
-    glue('
+
+    o = glue('
     <a class="badge badge-primary">PID {pid}</a>
     <h3>
-    <code>{st_as_text(ds)}</code>
+    <code>{st_as_text(ds) |> substr(1, 50)}...</code>
     <h3>
 
     <h1>
@@ -106,9 +105,11 @@ server <- function(input, output, session) {
       </svg>
     </h1>
 
- 
 
-    ') |> HTML()
+
+    ')
+    print(o)
+    HTML(o)
   })
 }
 

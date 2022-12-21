@@ -1,16 +1,1 @@
 all images in ./aves/ are Public domain.
-DEM.png was obtained from https://land.copernicus.eu/imagery-in-situ/eu-dem/eu-dem-v1.1 and processed as:
-  `
-  # TODO
-  require(terra)
-  require(sf)
-  require(dplyr)
-  download.file('http://geo-spatial.org/vechi/file_download/29527', 'judete.geojson')
-  r = rast('EUD_CP-SLOP_5500025000-AA.tif')
-  ar = st_read('judete.geojson')|>filter(name == 'Argeș')
-  ar = st_transform(ar, crs(r))
-  r = crop(r, ar)
-
-  terra::writeRaster(r, './inst/sample_images/spatial/ARslope.png')
-  
-  `
