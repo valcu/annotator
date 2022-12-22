@@ -7,7 +7,7 @@
 runExample(example, ...)
 }
 \arguments{
-\item{example}{The name of the example to run. Available are: \verb{01_hello}, \verb{02_pipelineSimple}}
+\item{example}{The name of the example to run. Available are: \verb{01_hello}, \verb{02_pipeline}}
 
 \item{...}{further arguments to pass to  \code{\link[shiny:runApp]{shiny::runApp()}}}
 }
@@ -21,7 +21,7 @@ Launch Shiny example applications bundled in annotator.
 ## Only run this example in interactive R sessions
 if (interactive()) {
  annotator::runExample("01_hello")
- annotator::runExample("02_pipelineSimple")
+ annotator::runExample("02_pipeline")
 
  # Print the directory containing the code for all examples
  system.file("examples", package = "annotator")

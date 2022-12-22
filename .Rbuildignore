@@ -7,3 +7,5 @@
 ^\.github$
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
+annotator_widget.gif
+annotator_shiny.gif

@@ -10,14 +10,14 @@ empty_png <- function() {
 #'
 #' Launch Shiny example applications bundled in annotator. 
 #'
-#' @param example The name of the example to run. Available are: `01_hello`, `02_pipelineSimple`
+#' @param example The name of the example to run. Available are: `01_hello`, `02_pipeline`
 #' @param ... further arguments to pass to  [shiny::runApp()]
 #' @return No return value, called for its side effects.
 #' @examples
 #' ## Only run this example in interactive R sessions
 #' if (interactive()) {
 #'  annotator::runExample("01_hello")
-#'  annotator::runExample("02_pipelineSimple")
+#'  annotator::runExample("02_pipeline")
 #'
 #'  # Print the directory containing the code for all examples
 #'  system.file("examples", package = "annotator")

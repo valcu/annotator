@@ -12,8 +12,12 @@
 
 The main function of the package is `annotate(path_to_image)`. Polygons can be outlined on the image and polygon's coordinates are returned after each draw. 
 
+![annotate widget](annotator_widget.gif)
+
+
 `annotator`  makes it easy to create annotation pipelines in  [shiny](https://shiny.rstudio.com). A minimal Shiny app demonstrating a simple pipeline can be found on [shinyapps.io](https://mihaiv.shinyapps.io/annotator/). 
 
+![annotate widget](annotator_shiny.gif)
 
 
 Installation
