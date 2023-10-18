@@ -3,6 +3,7 @@
 \docType{package}
 \name{annotator}
 \alias{annotator}
+\alias{annotator-package}
 \title{Image annotation}
 \description{
 Image annotation using free drawing.

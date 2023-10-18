@@ -5,7 +5,7 @@
 #'
 #' @name annotator
 #' @docType package
-#'
+#' @aliases annotator-package
 #' @author Mihai Valcu \email{mvalcu@gwdg.de}
 #'
 #' @import     methods utils
