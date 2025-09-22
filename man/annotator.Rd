@@ -8,6 +8,15 @@
 \description{
 Image annotation using free drawing.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/valcu/annotator}
+  \item Report bugs at \url{https://github.com/valcu/annotator/issues}
+}
+
+}
 \author{
 Mihai Valcu \email{mvalcu@gwdg.de}
 }
+\keyword{internal}

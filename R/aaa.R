@@ -8,8 +8,9 @@
 #' @aliases annotator-package
 #' @author Mihai Valcu \email{mvalcu@gwdg.de}
 #'
+#' @keywords internal
 #' @import     methods utils
 #' @import     shiny htmlwidgets
 #' @importFrom xfun base64_uri
 #'
-NULL
+"_PACKAGE"
